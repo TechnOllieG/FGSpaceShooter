@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion lookRotation;
     private Rigidbody2D rb;
     private Camera mainCamera;
-    private Vector3 mousePosition;
+    public Vector3 mousePosition;
 
     private void Start()
     {
@@ -24,10 +24,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        lookDirection = (mousePosition - playerTransform.position);
-        lookRotation = Quaternion.LookRotation(lookDirection);
-        playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+
+
+        lookDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle -90, Vector3.forward);
+
 
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
