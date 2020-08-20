@@ -9,15 +9,17 @@ public class PlayerMovement : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
     private Rigidbody2D rb;
+    private Transform playerTransform;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerTransform = GetComponent<Transform>();
     }
     private void FixedUpdate()
     {
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
-        rb.AddForce(new Vector2(horizontalInput*horizontalSpeed, verticalInput*verticalSpeed));
+        playerTransform.position = playerTransform.position + new Vector3(horizontalInput*horizontalSpeed*Time.fixedDeltaTime, verticalInput*verticalSpeed*Time.fixedDeltaTime, 0);
     }
 }
