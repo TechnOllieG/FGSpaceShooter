@@ -36,6 +36,6 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.AddForce(new Vector3(horizontalInput * horizontalSpeed * Time.fixedDeltaTime, verticalInput * verticalSpeed * Time.fixedDeltaTime, 0));
+        rb.velocity = new Vector2(horizontalInput * horizontalSpeed, verticalInput * verticalSpeed);
     }
 }
