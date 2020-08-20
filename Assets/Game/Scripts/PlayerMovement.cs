@@ -1,11 +1,23 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    private float forwardInput;
+    public float verticalSpeed;
+    public float horizontalSpeed;
 
+    private float verticalInput;
+    private float horizontalInput;
+    private Rigidbody2D rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     private void FixedUpdate()
     {
-        Input.GetAxis("Vertical");
+        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+        rb.AddForce(new Vector2(horizontalInput*horizontalSpeed, verticalInput*verticalSpeed));
     }
 }
