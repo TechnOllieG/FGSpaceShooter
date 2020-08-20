@@ -2,9 +2,8 @@
 
 public class MachineGun : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this);
-        Debug.Log("Trigger has been entered");
+        GameObject.Destroy(this.gameObject);
     }
 }

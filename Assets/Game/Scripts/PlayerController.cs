@@ -3,14 +3,14 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float verticalSpeed; // Base speed value of the vertical movement
-    [SerializeField] private float horizontalSpeed; // Base speed value of the horizontal movement
-    [SerializeField] private float rotationSpeed; // Base speed value of the rotation of the player following the mouse
-    [SerializeField] private float machineGunAmmoSpeed;
-    [SerializeField] private float machineGunCooldown;
-    [SerializeField] private GameObject machineGunAmmo;
-    [SerializeField] private GameObject machineGun1;
-    [SerializeField] private GameObject machineGun2;
+    public float verticalSpeed; // Base speed value of the vertical movement
+    public float horizontalSpeed; // Base speed value of the horizontal movement
+    public float rotationSpeed; // Base speed value of the rotation of the player following the mouse
+    public float machineGunAmmoSpeed;
+    public float machineGunCooldown;
+    public GameObject machineGunAmmo;
+    public GameObject machineGun1;
+    public GameObject machineGun2;
 
     private float verticalInput; // Storage for input "Vertical" in the input manager
     private float horizontalInput; // Storage for input "Horizontal" in the input manager
