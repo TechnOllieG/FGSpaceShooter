@@ -3,9 +3,10 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float verticalSpeed; // Base speed value of the vertical movement
-    public float horizontalSpeed; // Base speed value of the horizontal movement
-    public float rotationSpeed; // Base speed value of the rotation of the player following the mouse
+    [SerializeField] private float verticalSpeed; // Base speed value of the vertical movement
+    [SerializeField] private float horizontalSpeed; // Base speed value of the horizontal movement
+    [SerializeField] private float rotationSpeed; // Base speed value of the rotation of the player following the mouse
+
 
     private float verticalInput; // Storage for input "Vertical" in the input manager
     private float horizontalInput; // Storage for input "Horizontal" in the input manager
@@ -14,8 +15,9 @@ public class PlayerController : MonoBehaviour
     private Quaternion lookRotation;
     private Rigidbody2D rb;
     private Camera mainCamera;
-    public Vector3 mousePosition;
-
+    private Vector3 mousePosition;
+    private Quaternion quaternionAngle;
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,10 +28,12 @@ public class PlayerController : MonoBehaviour
     {
 
 
-        lookDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        lookDirection = Input.mousePosition - mainCamera.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle -90, Vector3.forward);
 
+        quaternionAngle = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, quaternionAngle, 1 - Mathf.Exp(rotationSpeed * Time.deltaTime));
 
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
