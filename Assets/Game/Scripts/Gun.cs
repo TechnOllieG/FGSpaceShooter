@@ -9,10 +9,9 @@ public class Gun : MonoBehaviour
     public Transform LeftGunTransform;
     public Transform RightGunTransform;
     public float ShootCooldown;
-    private GameObject machineGunAmmoClone1;
-    private GameObject machineGunAmmoClone2;
+
     private float currentMachineGunCooldown = 0;
-    
+
 
     private Quaternion dirQuaternion;
 
@@ -32,8 +31,9 @@ public class Gun : MonoBehaviour
         {
 
             dirQuaternion = transform.rotation;
-            machineGunAmmoClone1 = Instantiate(MachineGunAmmo,LeftGunTransform.position, dirQuaternion);
-            machineGunAmmoClone2 = Instantiate(MachineGunAmmo, RightGunTransform.position, dirQuaternion);
+            Instantiate(MachineGunAmmo, LeftGunTransform.position, dirQuaternion);
+            Instantiate(MachineGunAmmo, RightGunTransform.position, dirQuaternion);
+
             currentMachineGunCooldown = ShootCooldown;
         }
 

@@ -13,12 +13,6 @@ public class Bullet : MonoBehaviour
         rb.AddForce(transform.up * 20, ForceMode2D.Impulse);
     }
 
-    private void Update()
-    {
-        
-    }
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject.Destroy(this.gameObject);
