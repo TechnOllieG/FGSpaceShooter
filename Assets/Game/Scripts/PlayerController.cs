@@ -12,10 +12,9 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput; // Storage for input "Horizontal" in the input manager
     private Transform playerTransform; // The transform component of this gameobject
     private Vector3 lookDirection;
-    private Quaternion lookRotation;
     private Rigidbody2D rb;
     private Camera mainCamera;
-    private Vector3 mousePosition;
+    private float angle;
     private Quaternion quaternionAngle;
     
     private void Start()
@@ -26,14 +25,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-
-
-        lookDirection = Input.mousePosition - mainCamera.WorldToScreenPoint(transform.position);
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        lookDirection = Input.mousePosition - mainCamera.WorldToScreenPoint(playerTransform.position);
+        angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
         quaternionAngle = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, quaternionAngle, 1 - Mathf.Exp(rotationSpeed * Time.deltaTime));
+        playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, quaternionAngle, 1 - Mathf.Exp(rotationSpeed * Time.deltaTime));
 
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
