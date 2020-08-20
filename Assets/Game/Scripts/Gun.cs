@@ -1,43 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Gun : MonoBehaviour
+namespace FG
 {
-    public float machineGunCooldown;
-    public GameObject MachineGunAmmo;
-    public Transform LeftGunTransform;
-    public Transform RightGunTransform;
-    public float ShootCooldown;
-
-    private float currentMachineGunCooldown = 0;
-
-
-    private Quaternion dirQuaternion;
-
-    private PlayerController playerController;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Gun : MonoBehaviour
     {
-        playerController = GetComponent<PlayerController>();
-    }
+        public float machineGunCooldown;
+        public GameObject MachineGunAmmo;
+        public Transform LeftGunTransform;
+        public Transform RightGunTransform;
+        public float ShootCooldown;
 
-    // Update is called once per frame
-    void Update()
-    {
-        currentMachineGunCooldown -= Time.deltaTime;
-        if (Input.GetMouseButton(0) && currentMachineGunCooldown <= 0)
+        private float currentMachineGunCooldown = 0;
+
+        private Quaternion dirQuaternion;
+
+        void Update()
         {
+            currentMachineGunCooldown -= Time.deltaTime;
+            if (Input.GetMouseButton(0) && currentMachineGunCooldown <= 0)
+            {
+                dirQuaternion = transform.rotation;
+                Instantiate(MachineGunAmmo, LeftGunTransform.position, dirQuaternion);
+                Instantiate(MachineGunAmmo, RightGunTransform.position, dirQuaternion);
 
-            dirQuaternion = transform.rotation;
-            Instantiate(MachineGunAmmo, LeftGunTransform.position, dirQuaternion);
-            Instantiate(MachineGunAmmo, RightGunTransform.position, dirQuaternion);
-
-            currentMachineGunCooldown = ShootCooldown;
+                currentMachineGunCooldown = ShootCooldown;
+            }
         }
-
-
-
     }
 }
