@@ -4,6 +4,9 @@ namespace FG
 {
     public class Bullet : MonoBehaviour
     {
+
+        public float damage;
+
         private Rigidbody2D rb;
 
         private void Awake()
@@ -12,9 +15,13 @@ namespace FG
             rb.AddForce(transform.up * 20, ForceMode2D.Impulse);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            GameObject.Destroy(this.gameObject);
+            if (collider.CompareTag("Enemy"))
+            {
+                collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+                Destroy(gameObject);
+            }
         }
     }
 }
