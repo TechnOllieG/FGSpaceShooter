@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeedMultiplier: 10
-  minVelocity: 2
+  minVelocity: 0
   hp: 1
 --- !u!58 &6645399919779593221
 CircleCollider2D:
