@@ -15,13 +15,11 @@ namespace FG
         [Tooltip("The GameObject that is the parent to all spawnpoints (12 empty GameObjects)")]
         public GameObject enemySpawnpoints;
 
-        private GameObject currentEnemy; // The enemy that was spawned this frame
         private float currentCoolDown; // Cooldown that is ticking down, at 0 or below an enemy will spawn
-        private Transform[] spawnPoints = new Transform[12]; // array to hold all spawn point objects
+        private readonly Transform[] spawnPoints = new Transform[12]; // array to hold all spawn point objects
         private int randomPoint; // Variable to store a random value between 0-11 to pick the random spawnpoint
         private Vector3 randomDeviation; // Random Deviation to rotation of the enemy between -15 and 15 degrees
         private Quaternion enemyRotation; // The rotation the enemy will be spawned at
-        private bool colliderEnabled = true; // 
 
         private void Awake()
         {
@@ -35,25 +33,17 @@ namespace FG
         {
             currentCoolDown -= Time.deltaTime;
 
-            if (currentCoolDown < 0 && colliderEnabled)
+            if (currentCoolDown < 0)
             {
                 randomPoint = UnityEngine.Random.Range(0, 11);
                 randomDeviation = new Vector3(0, 0, UnityEngine.Random.Range(-15, 15));
                 enemyRotation = Quaternion.Euler(spawnPoints[randomPoint].transform.rotation.eulerAngles + randomDeviation);
 
                 // Spawns an enemy with the same pos/rot as the spawn point, parented to this.gameObject
-                currentEnemy = Instantiate(enemy1, spawnPoints[randomPoint].transform.position, enemyRotation, transform);
+                Instantiate(enemy1, spawnPoints[randomPoint].transform.position, enemyRotation, transform);
 
-                StartCoroutine("EnableCollider");
                 currentCoolDown = coolDown;
             }
-        }
-
-        IEnumerator EnableCollider()
-        {
-            yield return new WaitForSeconds(timeToEnableCollider);
-            currentEnemy.GetComponent<PolygonCollider2D>().enabled = true;
-            colliderEnabled = true;
         }
     }
 }

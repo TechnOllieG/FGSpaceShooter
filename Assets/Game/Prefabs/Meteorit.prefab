@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 705992287424409768}
   - component: {fileID: 5064169353161748428}
   - component: {fileID: 8505477300253825480}
-  - component: {fileID: 3096119488277878221}
   - component: {fileID: 8369121939443851185}
+  - component: {fileID: 6645399919779593221}
   m_Layer: 0
   m_Name: Meteorit
   m_TagString: Enemy
@@ -106,44 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &3096119488277878221
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3268274261173816362}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10, y: 10}
-    newSize: {x: 10, y: 10}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 3.0282972, y: -0.91521525}
-      - {x: 1.6553621, y: -3.9771287}
-      - {x: 1.0586925, y: -4.468643}
-      - {x: -0.31471053, y: -4.8633947}
-      - {x: -1.5371054, y: -4.5003576}
-      - {x: -2.8046558, y: -3.6684594}
-      - {x: -2.9074895, y: -2.3727975}
-      - {x: -3.5297606, y: -1.154196}
-      - {x: -1.9496025, y: 2.0712304}
-      - {x: -1.0202404, y: 4.811463}
-      - {x: 0.28304976, y: 4.2971277}
-      - {x: 0.8900035, y: 2.8936524}
-      - {x: 1.5688642, y: 2.2121007}
 --- !u!114 &8369121939443851185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,3 +119,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeedMultiplier: 10
+  minVelocity: 2
+  hp: 1
+--- !u!58 &6645399919779593221
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3268274261173816362}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.27, y: -2.06}
+  serializedVersion: 2
+  m_Radius: 2.91
