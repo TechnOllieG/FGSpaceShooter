@@ -35,9 +35,9 @@ namespace FG
             lookDirection = Input.mousePosition - mainCamera.WorldToScreenPoint(playerTransform.position);
             angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            quaternionAngle = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            playerTransform.rotation  = quaternionAngle = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
-            playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, quaternionAngle, 1 - Mathf.Exp(rotationSpeed * Time.deltaTime));
+             //= Quaternion.Slerp(playerTransform.rotation, quaternionAngle, 1 - Mathf.Exp(rotationSpeed * Time.deltaTime));
 
             verticalInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
