@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace FG
 {
@@ -13,6 +14,10 @@ namespace FG
         public float rotationSpeed;
         [Tooltip("The player's max hp")]
         public int hp = 20;
+        [Tooltip("The text component displaying player's hp")]
+        public Text hpText;
+        [Tooltip("The gameObject with the text component that reads game over")]
+        public GameObject gameOver;
 
         private float verticalInput; // Storage for input "Vertical" in the input manager
         private float horizontalInput; // Storage for input "Horizontal" in the input manager
@@ -41,8 +46,13 @@ namespace FG
 
             verticalInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
-
-
+            hpText.text = $"HP: {hp}";
+            if(hp <= 0)
+            {
+                gameOver.SetActive(true);
+                hpText.gameObject.SetActive(false);
+                Destroy(this.gameObject);
+            }
         }
         private void FixedUpdate()
         {
