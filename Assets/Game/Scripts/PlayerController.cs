@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace FG
@@ -16,9 +17,12 @@ namespace FG
         public int hp = 20;
         [Tooltip("The text component displaying player's hp")]
         public Text hpText;
+        [Tooltip("The text component displaying player's points")]
+        public Text pointsText;
         [Tooltip("The gameObject with the text component that reads game over")]
         public GameObject gameOver;
 
+        [NonSerialized] public int points = 0; // The points the player has gathered
         private float verticalInput; // Storage for input "Vertical" in the input manager
         private float horizontalInput; // Storage for input "Horizontal" in the input manager
         private Transform playerTransform; // The transform component of this gameobject
@@ -27,7 +31,6 @@ namespace FG
         private Camera mainCamera;
         private float angle; // angle to calculate for Player Rotation
         private Quaternion quaternionAngle; // Conversion to quaternion and in the correct format for application
-
 
         private void Start()
         {
@@ -46,7 +49,9 @@ namespace FG
 
             verticalInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
-            hpText.text = $"HP: {hp}";
+
+            pointsText.text = $"Points: {points}";
+            hpText.text = $"Lives: {hp}";
             if(hp <= 0)
             {
                 gameOver.SetActive(true);

@@ -19,6 +19,7 @@ namespace FG
             if (collider.CompareTag("Enemy"))
             {
                 collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+
                 Destroy(gameObject);
             }
             else if(collider.CompareTag("Wall"))
