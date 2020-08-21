@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Machine Gun
   - Charged Shot
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - PlayerShot
   - Player
-  - 
+  - Meteorit
   - 
   - 
   - 
