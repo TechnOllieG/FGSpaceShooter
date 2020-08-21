@@ -10,8 +10,8 @@ namespace FG
         public float verticalSpeed;
         [Tooltip("Base speed value of the horizontal movement")]
         public float horizontalSpeed;
-        [Tooltip("Base speed value of the rotation of the player following the mouse")]
-        public float rotationSpeed;
+        //[Tooltip("Base speed value of the rotation of the player following the mouse")]
+        //public float rotationSpeed;
         [Tooltip("The player's max hp")]
         public int hp = 20;
         [Tooltip("The text component displaying player's hp")]

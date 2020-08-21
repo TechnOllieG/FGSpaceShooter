@@ -121,6 +121,7 @@ MonoBehaviour:
   enemySpeedMultiplier: 10
   minVelocity: 0
   hp: 1
+  deathVFX: {fileID: 7646006425114318735, guid: 2302429f63570ac4fa3425e068522422, type: 3}
 --- !u!58 &6645399919779593221
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ namespace FG
         [Tooltip("The hitpoints of the enemy, 1 will kill it in one machine gun shot")]
         public float hp = 1;
 
+
+        [SerializeField] private ParticleSystem deathVFX;
         private Rigidbody2D rb;
         private Vector3 lastVelocity;
         private float speed;
@@ -27,7 +29,7 @@ namespace FG
             hp -= damage;
             if (hp <= 0)
             {
-                Destroy(gameObject);
+                Death();
             }
         }
 
@@ -38,12 +40,19 @@ namespace FG
 
 
         }
+        private void Death()
+        {
+            ParticleSystem particleSystem= Instantiate(deathVFX, transform.position, Quaternion.identity);
+            Invoke("Destroy(particleSystem)", 1f);
 
+            Destroy(gameObject);
+
+        }
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.tag == "Player")
             {
-                GameObject.Destroy(this.gameObject);
+                Death();
                 collision.gameObject.GetComponent<PlayerController>().hp -= 1;
             }
             else if (collision.gameObject.tag == "Wall")
